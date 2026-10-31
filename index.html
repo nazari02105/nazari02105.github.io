@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Machine Learning Research Portfolio</title>
+  <title>Ali Nazari | ML Researcher</title>
   <meta name="description" content="Ali Nazari is a machine learning researcher and M.Sc. Computer Science student at TU Dresden, working on LLM reasoning, vision-language models and trustworthy ML.">
   <meta name="author" content="Ali Nazari">
   <meta property="og:title" content="Ali Nazari | Machine Learning Researcher">
@@ -438,13 +438,25 @@
     .rows .v span { color: var(--muted); }
     .note { color: var(--muted); margin-bottom: 0.9rem; }
 
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
     .panel { border: 1px solid var(--line); border-radius: 16px; background: var(--card); padding: 1.2rem 1.3rem; }
-    .edu li + li { margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
-    .edu strong { display: block; font-weight: 700; }
+    .edu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .edu li { display: flex; flex-direction: column; align-items: flex-start; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .edu li:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .edu .when {
+      font-size: 0.85rem; font-weight: 700; color: var(--accent);
+      background: var(--accent-soft); padding: 0.1rem 0.65rem; border-radius: 999px; margin-bottom: 0.6rem;
+    }
+    .edu strong { font-size: 1.1rem; font-weight: 700; }
     .edu .org { color: var(--accent); font-weight: 600; }
     .edu .meta { color: var(--muted); font-size: 0.95rem; }
-    .certs li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.3rem 0; }
+    .edu .rank {
+      display: inline-flex; align-items: flex-start; gap: 0.45rem; margin-top: 0.75rem;
+      font-size: 0.9rem; font-weight: 600; line-height: 1.4;
+      color: var(--gold); background: var(--gold-soft); padding: 0.35rem 0.75rem; border-radius: 10px;
+    }
+    .edu .rank svg { width: 1rem; height: 1rem; flex: none; margin-top: 0.1rem; }
+    .certs { columns: 2; column-gap: 2.5rem; }
+    .certs li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.3rem 0; break-inside: avoid; }
     .certs .issuer { color: var(--muted); font-size: 0.88rem; white-space: nowrap; }
 
     /* Contact */
@@ -496,7 +508,8 @@
       .hl-num { font-size: 3rem; padding-right: 1.25rem; }
       .hl-go { grid-column: 1 / -1; }
       .projects { grid-template-columns: 1fr; }
-      .split { grid-template-columns: 1fr; gap: 0; }
+      .edu { grid-template-columns: 1fr; }
+      .certs { columns: 1; }
       .rows li { grid-template-columns: 1fr; gap: 0.1rem; }
       .tl li { grid-template-columns: 1fr; gap: 0; }
       .tl .date { text-align: left; padding: 0 0 0.35rem 1.75rem; position: relative; }
@@ -722,6 +735,29 @@
       </div>
     </section>
 
+    <!-- ================= Education ================= -->
+    <section class="part reveal" id="education">
+      <h2><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span>Education</h2>
+      <ul class="edu">
+        <li class="panel">
+          <span class="when">Oct 2026 – present</span>
+          <strong>M.Sc. Computer Science</strong>
+          <span class="org">Dresden University of Technology (TU Dresden)</span>
+          <span class="meta">Dresden, Germany</span>
+        </li>
+        <li class="panel">
+          <span class="when">Sep 2020 – Jul 2025</span>
+          <strong>B.Sc. Computer Engineering</strong>
+          <span class="org">Sharif University of Technology</span>
+          <span class="meta">Tehran, Iran. GPA 19.16/20 (major GPA 19.42/20)</span>
+          <span class="rank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>
+            Ranked 60th among 155,000 in Iran's national university entrance exam
+          </span>
+        </li>
+      </ul>
+    </section>
+
     <!-- ================= Experience ================= -->
     <section class="part" id="experience">
       <h2 class="reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20"/></svg></span>Experience</h2>
@@ -928,25 +964,8 @@
       </ul>
     </section>
 
-    <!-- ================= Education + Certificates ================= -->
-    <div class="split">
-      <section class="part reveal" id="education">
-        <h2><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span>Education</h2>
-        <ul class="edu panel">
-          <li>
-            <strong>M.Sc. Computer Science</strong>
-            <span class="org">Dresden University of Technology, Germany</span>
-            <div class="meta">Oct 2026 – present</div>
-          </li>
-          <li>
-            <strong>B.Sc. Computer Engineering</strong>
-            <span class="org">Sharif University of Technology, Iran</span>
-            <div class="meta">Sep 2020 – Jul 2025. GPA 19.16/20 (major 19.42/20)</div>
-          </li>
-        </ul>
-      </section>
-
-      <section class="part reveal" id="certificates">
+    <!-- ================= Certificates ================= -->
+    <section class="part reveal" id="certificates">
         <h2><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"/></svg></span>Certificates</h2>
         <ul class="certs panel">
           <li><a href="https://www.udemy.com/certificate/UC-5d3948a0-379e-4bba-8bdc-01d8e227efef/">AI Voice Assistant</a><span class="issuer">Udemy</span></li>
@@ -959,7 +978,6 @@
           <li><a href="https://maktabkhooneh.org/certificates/MK-1S63UK/">Advanced Python Programming</a><span class="issuer">Maktabkhooneh</span></li>
         </ul>
       </section>
-    </div>
 
     <!-- ================= Contact ================= -->
     <section class="contact reveal" id="contact">
