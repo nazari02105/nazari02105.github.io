@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ali Nazari | Machine Learning Researcher</title>
+  <title>Machine Learning Research Portfolio</title>
   <meta name="description" content="Ali Nazari is a machine learning researcher and M.Sc. Computer Science student at TU Dresden, working on LLM reasoning, vision-language models and trustworthy ML.">
   <meta name="author" content="Ali Nazari">
   <meta property="og:title" content="Ali Nazari | Machine Learning Researcher">
@@ -11,7 +11,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nazari02105.github.io/">
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/79265166?v=4">
-  <link rel="icon" href="https://avatars.githubusercontent.com/u/79265166?v=4&amp;s=64">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232356C9'/%3E%3Cstop offset='1' stop-color='%237048E8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Cg stroke='white' stroke-width='3' stroke-linecap='round' fill='none'%3E%3Cpath d='M32 35 32 16M32 35 16 46M32 35 48 46'/%3E%3Cpath d='M32 16 16 46 48 46Z' opacity='.45'/%3E%3C/g%3E%3Cg fill='white'%3E%3Ccircle cx='32' cy='16' r='5.5'/%3E%3Ccircle cx='16' cy='46' r='5.5'/%3E%3Ccircle cx='48' cy='46' r='5.5'/%3E%3Ccircle cx='32' cy='35' r='4'/%3E%3C/g%3E%3C/svg%3E">
+  <meta name="theme-color" content="#2356C9">
 
   <!-- Apply the saved light/dark choice before the page draws, so it doesn't flash -->
   <script>
@@ -100,10 +101,9 @@
       font-family: var(--serif); font-weight: 700; font-size: 1.15rem; color: var(--ink); white-space: nowrap;
     }
     .brand:hover { text-decoration: none; }
-    .brand-dot {
-      width: 0.6rem; height: 0.6rem; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--violet));
-      box-shadow: 0 0 0 4px var(--accent-soft);
+    .brand-logo {
+      width: 1.75rem; height: 1.75rem; flex: none; border-radius: 8px;
+      box-shadow: 0 6px 14px -6px rgba(80, 60, 200, 0.6);
     }
     .nav-right { display: flex; align-items: center; gap: 1.25rem; }
     .nav-links { display: flex; gap: 1.35rem; align-items: center; font-size: 0.98rem; }
@@ -178,22 +178,8 @@
       display: grid; grid-template-columns: minmax(0, 1fr) 16rem;
       gap: 3.5rem; align-items: center; padding: 4.5rem 0 2.5rem;
     }
-    .status {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      padding: 0.3rem 0.85rem 0.3rem 0.7rem; border-radius: 999px;
-      background: color-mix(in srgb, var(--card) 75%, transparent);
-      border: 1px solid var(--line); font-size: 0.9rem; font-weight: 600; color: var(--muted);
-      backdrop-filter: blur(6px);
-    }
-    .status .pulse { position: relative; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #22B573; }
-    .status .pulse::after {
-      content: ""; position: absolute; inset: 0; border-radius: 50%; background: #22B573;
-      animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
-    }
-    @keyframes ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }
 
     .about h1 {
-      margin-top: 1.1rem;
       font-family: var(--serif); font-weight: 700;
       font-size: clamp(2.7rem, 6vw, 3.8rem); line-height: 1.05; letter-spacing: -0.015em;
       background: linear-gradient(110deg, var(--ink) 25%, var(--accent) 60%, var(--violet) 90%);
@@ -202,17 +188,20 @@
     }
     @keyframes shine { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
     .subtitle { margin-top: 0.7rem; font-size: 1.18rem; color: var(--muted); }
-    .typed-line { margin-top: 0.4rem; font-size: 1.18rem; color: var(--muted); min-height: 1.9rem; }
-    .typed {
+    .focus {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      margin-top: 1rem; padding: 0.7rem 1rem; max-width: 38rem;
+      border-radius: 12px; font-size: 1.08rem; color: var(--muted); line-height: 1.5;
+      background: color-mix(in srgb, var(--card) 70%, transparent);
+      border: 1px solid var(--line); border-left: 3px solid var(--violet);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    .focus svg { width: 1.15rem; height: 1.15rem; flex: none; margin-top: 0.2rem; color: var(--violet); }
+    .focus .grad {
       font-weight: 700;
       background: linear-gradient(90deg, var(--accent), var(--violet));
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .caret {
-      display: inline-block; width: 2px; height: 1.15em; margin-left: 2px; vertical-align: -0.18em;
-      background: var(--violet); animation: blink 1s steps(1) infinite;
-    }
-    @keyframes blink { 50% { opacity: 0; } }
 
     .bio { margin-top: 1.4rem; max-width: 38rem; }
     .bio p + p { margin-top: 0.8rem; }
@@ -258,20 +247,42 @@
     .photo-caption strong { color: var(--ink); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.35rem; }
     .photo-caption svg { width: 1rem; height: 1rem; color: var(--accent); }
 
-    /* Stats */
-    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; padding-bottom: 1rem; }
-    .stat {
-      padding: 1.1rem 1.2rem; border-radius: 16px;
-      background: color-mix(in srgb, var(--card) 72%, transparent);
-      border: 1px solid var(--line); backdrop-filter: blur(10px);
+    /* Papers highlight */
+    .highlight {
+      position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center; gap: 1.75rem; margin-bottom: 1rem;
+      padding: 1.4rem 1.75rem; border-radius: 20px; color: var(--ink);
+      background: color-mix(in srgb, var(--card) 74%, transparent);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       box-shadow: var(--shadow);
     }
-    .stat .num {
-      font-family: var(--serif); font-weight: 700; font-size: 2rem; line-height: 1.1;
+    .highlight::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+      background: linear-gradient(120deg, var(--accent), var(--violet), var(--teal));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+    }
+    .highlight:hover { text-decoration: none; }
+    .hl-num {
+      font-family: var(--serif); font-weight: 700; font-size: 3.8rem; line-height: 1;
+      padding-right: 1.75rem; border-right: 1px solid var(--line);
       background: linear-gradient(135deg, var(--accent), var(--violet));
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .stat .label { margin-top: 0.25rem; font-size: 0.93rem; color: var(--muted); line-height: 1.35; }
+    .hl-text { display: block; }
+    .hl-text strong { display: block; font-size: 1.2rem; font-weight: 700; }
+    .hl-text > span:not(.hl-venues) { display: block; color: var(--muted); font-size: 0.98rem; }
+    .hl-venues { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem; }
+    .hl-venues span {
+      color: #fff; font-size: 0.78rem; font-weight: 700;
+      padding: 0.12rem 0.65rem; border-radius: 999px;
+    }
+    .hl-go {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-weight: 700; color: var(--accent); white-space: nowrap;
+    }
+    .hl-go svg { width: 1.1rem; height: 1.1rem; transition: transform 0.25s ease; }
+    .highlight:hover .hl-go svg { transform: translateX(4px); }
 
     /* ================= Sections ================= */
     section.part { padding-top: 4rem; }
@@ -481,7 +492,9 @@
       .about { grid-template-columns: 1fr; gap: 2rem; padding-top: 2.5rem; }
       .photo { order: -1; }
       .photo-frame { width: 11rem; height: 11rem; }
-      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .highlight { grid-template-columns: auto minmax(0, 1fr); gap: 1.25rem; padding: 1.25rem; }
+      .hl-num { font-size: 3rem; padding-right: 1.25rem; }
+      .hl-go { grid-column: 1 / -1; }
       .projects { grid-template-columns: 1fr; }
       .split { grid-template-columns: 1fr; gap: 0; }
       .rows li { grid-template-columns: 1fr; gap: 0.1rem; }
@@ -517,7 +530,15 @@
   <!-- ================= Navigation ================= -->
   <header class="nav">
     <div class="container">
-      <a class="brand" href="#top"><span class="brand-dot"></span><span>Ali Nazari</span></a>
+      <a class="brand" href="#top">
+        <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2356C9"/><stop offset="1" stop-color="#7048E8"/></linearGradient></defs>
+          <rect width="64" height="64" rx="15" fill="url(#logo-g)"/>
+          <g stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"><path d="M32 35 32 16M32 35 16 46M32 35 48 46"/><path d="M32 16 16 46 48 46Z" opacity=".45"/></g>
+          <g fill="#fff"><circle cx="32" cy="16" r="5.5"/><circle cx="16" cy="46" r="5.5"/><circle cx="48" cy="46" r="5.5"/><circle cx="32" cy="35" r="4"/></g>
+        </svg>
+        <span>Ali Nazari</span>
+      </a>
       <div class="nav-right">
         <nav class="nav-links" aria-label="Sections">
           <a class="opt" href="#news">News</a>
@@ -544,12 +565,11 @@
     <div class="container">
       <section class="about">
         <div>
-          <span class="status"><span class="pulse"></span>Open to research collaborations</span>
           <h1>Ali Nazari</h1>
           <p class="subtitle">M.Sc. Computer Science student at TU Dresden and Machine Learning Researcher</p>
-          <p class="typed-line">
-            <span class="sr-only">Research topics: LLM reasoning, vision-language models, trustworthy machine learning, natural language processing, representation learning.</span>
-            <span aria-hidden="true">Working on <span class="typed" id="typed">LLM reasoning</span><span class="caret"></span></span>
+          <p class="focus">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5c.4 3.9 1.9 6.6 4.6 7.9 1.2.6 2.6.9 4.4 1.1-1.8.2-3.2.5-4.4 1.1-2.7 1.3-4.2 4-4.6 7.9-.4-3.9-1.9-6.6-4.6-7.9C6.2 12 4.8 11.7 3 11.5c1.8-.2 3.2-.5 4.4-1.1 2.7-1.3 4.2-4 4.6-7.9z"/></svg>
+            <span>Working on <span class="grad">LLM reasoning, vision-language models and trustworthy ML</span></span>
           </p>
 
           <div class="bio">
@@ -594,12 +614,23 @@
         </div>
       </section>
 
-      <div class="stats">
-        <div class="stat reveal"><div class="num" data-count="5">5</div><div class="label">Papers at ICML, ACL, CVPR and more</div></div>
-        <div class="stat reveal"><div class="num">Spotlight</div><div class="label">at ICML 2026</div></div>
-        <div class="stat reveal"><div class="num" data-count="3">3</div><div class="label">Countries of research collaboration</div></div>
-        <div class="stat reveal"><div class="num" data-count="6">6</div><div class="label">Courses as a teaching assistant</div></div>
-      </div>
+      <a class="highlight reveal" href="#publications">
+        <span class="hl-num" data-count="5">5</span>
+        <span class="hl-text">
+          <strong>Research papers</strong>
+          <span>Co-authored at leading venues in machine learning, NLP and computer vision</span>
+          <span class="hl-venues">
+            <span class="v-icml">ICML 2026</span>
+            <span class="v-acl">ACL 2026</span>
+            <span class="v-cvpr">CVPR 2025</span>
+            <span class="v-isd">ISD 2025</span>
+            <span class="v-eccv">ECCV-W 2024</span>
+          </span>
+        </span>
+        <span class="hl-go">See publications
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
     </div>
   </div>
 
@@ -971,27 +1002,6 @@
         try { localStorage.setItem('theme', next); } catch (e) {}
       });
 
-      /* Typing effect for research topics */
-      var typed = document.getElementById('typed');
-      var words = ['LLM reasoning', 'vision-language models', 'trustworthy ML', 'natural language processing', 'representation learning'];
-      if (typed && !still) {
-        var w = 0, i = words[0].length, deleting = true;
-        (function tick() {
-          var word = words[w];
-          if (deleting) {
-            i--;
-            typed.textContent = word.slice(0, i);
-            if (i === 0) { deleting = false; w = (w + 1) % words.length; }
-            setTimeout(tick, 45);
-          } else {
-            i++;
-            typed.textContent = words[w].slice(0, i);
-            if (i === words[w].length) { deleting = true; setTimeout(tick, 1900); }
-            else setTimeout(tick, 85);
-          }
-        })();
-      }
-
       /* Reveal sections as they scroll into view, and count up the numbers */
       function countUp(el) {
         var target = +el.getAttribute('data-count'), start = null;
@@ -1009,7 +1019,7 @@
           entries.forEach(function (e) {
             if (!e.isIntersecting) return;
             e.target.classList.add('in');
-            var n = e.target.querySelector('[data-count]');
+            var n = e.target.hasAttribute('data-count') ? e.target : e.target.querySelector('[data-count]');
             if (n) countUp(n);
             io.unobserve(e.target);
           });
