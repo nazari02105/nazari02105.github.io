@@ -1,0 +1,1053 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ali Nazari | Machine Learning Researcher</title>
+  <meta name="description" content="Ali Nazari is a machine learning researcher and M.Sc. Computer Science student at TU Dresden, working on LLM reasoning, vision-language models and trustworthy ML.">
+  <meta name="author" content="Ali Nazari">
+  <meta property="og:title" content="Ali Nazari | Machine Learning Researcher">
+  <meta property="og:description" content="LLM reasoning, vision-language models and trustworthy ML. Papers at ICML, ACL Findings and CVPR.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nazari02105.github.io/">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/79265166?v=4">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/79265166?v=4&amp;s=64">
+
+  <!-- Apply the saved light/dark choice before the page draws, so it doesn't flash -->
+  <script>
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+    document.documentElement.classList.add('js');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================= Colors and fonts ================= */
+    :root {
+      --bg: #FFFFFF;
+      --bg-soft: #F5F7FB;
+      --card: #FFFFFF;
+      --ink: #18202D;
+      --muted: #5B6779;
+      --line: #E3E8F0;
+      --accent: #2356C9;
+      --accent-soft: #EAF0FC;
+      --violet: #7048E8;
+      --teal: #0E9F8E;
+      --gold: #9A6400;
+      --gold-soft: #FDF3DD;
+      --shadow: 0 10px 30px -12px rgba(30, 50, 100, 0.22);
+      --aurora-opacity: 0.38;
+
+      --sans: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    }
+    /* Dark colors: used when the visitor's system is dark (unless they chose light), or when they chose dark */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0B1019; --bg-soft: #111827; --card: #121A28;
+        --ink: #E6EBF3; --muted: #9AA6B8; --line: #222C3C;
+        --accent: #7AA7FF; --accent-soft: #17233A; --violet: #B39CFF; --teal: #5FD4C4;
+        --gold: #F0B54A; --gold-soft: #2C2312;
+        --shadow: 0 14px 34px -14px rgba(0, 0, 0, 0.7);
+        --aurora-opacity: 0.28;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0B1019; --bg-soft: #111827; --card: #121A28;
+      --ink: #E6EBF3; --muted: #9AA6B8; --line: #222C3C;
+      --accent: #7AA7FF; --accent-soft: #17233A; --violet: #B39CFF; --teal: #5FD4C4;
+      --gold: #F0B54A; --gold-soft: #2C2312;
+      --shadow: 0 14px 34px -14px rgba(0, 0, 0, 0.7);
+      --aurora-opacity: 0.28;
+    }
+
+    /* ================= Base ================= */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 0.15em; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    h1, h2, h3, h4 { margin: 0; }
+    p { margin: 0; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    ::selection { background: var(--violet); color: #fff; }
+    .container { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    .skip { position: absolute; left: 1rem; top: -3rem; z-index: 50; background: var(--accent); color: #fff; padding: 0.5rem 1rem; border-radius: 8px; }
+    .skip:focus { top: 1rem; }
+
+    /* ================= Navigation ================= */
+    .nav {
+      position: sticky; top: 0; z-index: 30;
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    }
+    .nav .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 3.85rem; }
+    .brand {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: var(--serif); font-weight: 700; font-size: 1.15rem; color: var(--ink); white-space: nowrap;
+    }
+    .brand:hover { text-decoration: none; }
+    .brand-dot {
+      width: 0.6rem; height: 0.6rem; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--violet));
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+    .nav-right { display: flex; align-items: center; gap: 1.25rem; }
+    .nav-links { display: flex; gap: 1.35rem; align-items: center; font-size: 0.98rem; }
+    .nav-links a { color: var(--muted); white-space: nowrap; position: relative; padding: 0.2rem 0; }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--violet));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--ink); text-decoration: none; }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--ink); }
+    .cv-btn {
+      color: #fff !important; font-weight: 600; padding: 0.3rem 0.95rem !important; border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--violet));
+      box-shadow: 0 6px 18px -8px var(--violet);
+    }
+    .cv-btn::after { display: none; }
+    .cv-btn:hover { filter: brightness(1.1); }
+
+    .theme-toggle {
+      width: 2.3rem; height: 2.3rem; border-radius: 50%;
+      display: grid; place-items: center; cursor: pointer;
+      border: 1px solid var(--line); background: var(--card); color: var(--ink);
+      transition: transform 0.4s ease, border-color 0.2s ease;
+    }
+    .theme-toggle:hover { border-color: var(--accent); transform: rotate(20deg); }
+    .theme-toggle svg { width: 1.1rem; height: 1.1rem; }
+    .theme-toggle .moon { display: none; }
+    :root[data-theme="dark"] .theme-toggle .sun { display: none; }
+    :root[data-theme="dark"] .theme-toggle .moon { display: block; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle .sun { display: none; }
+      :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
+    }
+
+    .progress {
+      position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--accent), var(--violet));
+      transform-origin: left; transform: scaleX(0);
+    }
+
+    /* ================= Hero ================= */
+    .hero { position: relative; overflow: hidden; isolation: isolate; }
+    .aurora { position: absolute; inset: -20% -10% 0; z-index: -2; pointer-events: none; }
+    .blob {
+      position: absolute; border-radius: 50%; filter: blur(70px); opacity: var(--aurora-opacity);
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .blob.b1 { width: 34rem; height: 34rem; left: -6rem; top: -4rem; background: var(--accent); }
+    .blob.b2 { width: 30rem; height: 30rem; right: -4rem; top: 2rem; background: var(--violet); animation-duration: 22s; animation-delay: -6s; }
+    .blob.b3 { width: 24rem; height: 24rem; left: 38%; top: 16rem; background: var(--teal); animation-duration: 26s; animation-delay: -12s; }
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(4rem, 2rem) scale(1.12); }
+      100% { transform: translate(-3rem, 3rem) scale(0.95); }
+    }
+    /* faint dot grid that fades out toward the bottom */
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background-image: radial-gradient(color-mix(in srgb, var(--ink) 16%, transparent) 1px, transparent 1px);
+      background-size: 22px 22px;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent 85%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent 85%);
+    }
+    .hero::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 8rem; z-index: -1;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+    }
+
+    .about {
+      display: grid; grid-template-columns: minmax(0, 1fr) 16rem;
+      gap: 3.5rem; align-items: center; padding: 4.5rem 0 2.5rem;
+    }
+    .status {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.3rem 0.85rem 0.3rem 0.7rem; border-radius: 999px;
+      background: color-mix(in srgb, var(--card) 75%, transparent);
+      border: 1px solid var(--line); font-size: 0.9rem; font-weight: 600; color: var(--muted);
+      backdrop-filter: blur(6px);
+    }
+    .status .pulse { position: relative; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #22B573; }
+    .status .pulse::after {
+      content: ""; position: absolute; inset: 0; border-radius: 50%; background: #22B573;
+      animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @keyframes ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }
+
+    .about h1 {
+      margin-top: 1.1rem;
+      font-family: var(--serif); font-weight: 700;
+      font-size: clamp(2.7rem, 6vw, 3.8rem); line-height: 1.05; letter-spacing: -0.015em;
+      background: linear-gradient(110deg, var(--ink) 25%, var(--accent) 60%, var(--violet) 90%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      background-size: 200% 100%; animation: shine 9s ease-in-out infinite alternate;
+    }
+    @keyframes shine { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+    .subtitle { margin-top: 0.7rem; font-size: 1.18rem; color: var(--muted); }
+    .typed-line { margin-top: 0.4rem; font-size: 1.18rem; color: var(--muted); min-height: 1.9rem; }
+    .typed {
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--violet));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .caret {
+      display: inline-block; width: 2px; height: 1.15em; margin-left: 2px; vertical-align: -0.18em;
+      background: var(--violet); animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .bio { margin-top: 1.4rem; max-width: 38rem; }
+    .bio p + p { margin-top: 0.8rem; }
+    .bio strong { font-weight: 600; }
+
+    .social { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.75rem; }
+    .social a {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.5rem 0.95rem; border-radius: 10px;
+      border: 1px solid var(--line); color: var(--ink);
+      background: color-mix(in srgb, var(--card) 80%, transparent);
+      backdrop-filter: blur(6px);
+      font-size: 0.95rem; font-weight: 600;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    }
+    .social a:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); box-shadow: var(--shadow); text-decoration: none; }
+    .social svg { width: 1.05rem; height: 1.05rem; flex: none; }
+    .social a.primary { color: #fff; border-color: transparent; background: linear-gradient(135deg, var(--accent), var(--violet)); }
+    .social a.primary:hover { color: #fff; filter: brightness(1.08); }
+
+    /* Photo with spinning gradient ring */
+    .photo { text-align: center; }
+    .photo-frame { position: relative; width: 16rem; height: 16rem; margin: 0 auto; border-radius: 50%; padding: 5px; }
+    .photo-frame::before {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--accent), var(--violet), var(--teal), var(--accent));
+      animation: spin 8s linear infinite;
+    }
+    .photo-frame::after {
+      content: ""; position: absolute; inset: -18px; border-radius: 50%; z-index: -1;
+      background: conic-gradient(from 0deg, var(--accent), var(--violet), var(--teal), var(--accent));
+      filter: blur(28px); opacity: 0.45; animation: spin 8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .photo-frame img, .photo-frame .initials {
+      position: relative; width: 100%; height: 100%; border-radius: 50%;
+      object-fit: cover; display: block; border: 5px solid var(--bg); background: var(--bg-soft);
+    }
+    .photo-frame .initials { display: none; place-items: center; font-family: var(--serif); font-size: 4rem; color: var(--accent); }
+    .photo-frame.no-img img { display: none; }
+    .photo-frame.no-img .initials { display: grid; }
+    .photo-caption { margin-top: 1.3rem; font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
+    .photo-caption strong { color: var(--ink); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.35rem; }
+    .photo-caption svg { width: 1rem; height: 1rem; color: var(--accent); }
+
+    /* Stats */
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; padding-bottom: 1rem; }
+    .stat {
+      padding: 1.1rem 1.2rem; border-radius: 16px;
+      background: color-mix(in srgb, var(--card) 72%, transparent);
+      border: 1px solid var(--line); backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .stat .num {
+      font-family: var(--serif); font-weight: 700; font-size: 2rem; line-height: 1.1;
+      background: linear-gradient(135deg, var(--accent), var(--violet));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .stat .label { margin-top: 0.25rem; font-size: 0.93rem; color: var(--muted); line-height: 1.35; }
+
+    /* ================= Sections ================= */
+    section.part { padding-top: 4rem; }
+    .part > h2 {
+      font-family: var(--serif); font-weight: 700; font-size: 1.75rem;
+      margin-bottom: 1.6rem; display: flex; align-items: center; gap: 0.85rem;
+    }
+    .part > h2 .icon {
+      width: 2.3rem; height: 2.3rem; border-radius: 10px; display: grid; place-items: center; flex: none;
+      background: linear-gradient(135deg, var(--accent), var(--violet)); color: #fff;
+      box-shadow: 0 8px 18px -8px var(--violet);
+    }
+    .part > h2 .icon svg { width: 1.2rem; height: 1.2rem; }
+    .part > h2::after {
+      content: ""; flex: 1; height: 1px; margin-left: 0.5rem;
+      background: linear-gradient(90deg, var(--line), transparent);
+    }
+    .part h3.sub { font-size: 1.05rem; font-weight: 700; color: var(--muted); margin: 2.2rem 0 1.2rem; }
+    .part h3.sub:first-of-type { margin-top: 0; }
+
+    /* Scroll reveal (only when JavaScript is on) */
+    .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    /* News */
+    .news { position: relative; }
+    .news li {
+      display: grid; grid-template-columns: 6.8rem minmax(0, 1fr); gap: 1rem;
+      padding: 0.6rem 0.9rem; border-radius: 10px; transition: background-color 0.2s ease;
+    }
+    .news li:hover { background: var(--bg-soft); }
+    .news time {
+      justify-self: start; align-self: start;
+      font-size: 0.85rem; font-weight: 700; color: var(--accent);
+      background: var(--accent-soft); padding: 0.1rem 0.6rem; border-radius: 999px; margin-top: 0.15rem;
+    }
+
+    /* Publications */
+    .pubs { display: grid; gap: 0.9rem; }
+    .pub {
+      position: relative; display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 1.4rem;
+      padding: 1.25rem 1.3rem; border-radius: 16px;
+      background: var(--card); border: 1px solid var(--line);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .pub:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+    .pub.featured {
+      border: 1px solid transparent;
+      background: linear-gradient(var(--card), var(--card)) padding-box,
+                  linear-gradient(120deg, var(--accent), var(--violet), var(--teal)) border-box;
+    }
+    .venue-badge {
+      align-self: start; min-height: 3.8rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      border-radius: 12px; color: #fff; text-align: center; padding: 0.55rem 0.35rem; line-height: 1.15;
+      font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em;
+      box-shadow: 0 8px 18px -10px rgba(0,0,0,0.5);
+    }
+    .venue-badge small { font-weight: 500; font-size: 0.78rem; opacity: 0.92; margin-top: 0.15rem; }
+    .v-icml { background: linear-gradient(135deg, #3B7BF0, #1E4FB8); }
+    .v-acl  { background: linear-gradient(135deg, #E25A4B, #A92E22); }
+    .v-cvpr { background: linear-gradient(135deg, #3DA35A, #23692F); }
+    .v-isd  { background: linear-gradient(135deg, #9070D4, #5B3F98); }
+    .v-eccv { background: linear-gradient(135deg, #1BA9B8, #0A6B78); }
+
+    .pub-title { font-size: 1.08rem; font-weight: 700; line-height: 1.4; }
+    .pub-title a { color: var(--ink); }
+    .pub-title a:hover { color: var(--accent); }
+    .authors { margin-top: 0.3rem; color: var(--muted); font-size: 0.98rem; }
+    .me { color: var(--ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--violet); text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
+    .venue { margin-top: 0.2rem; font-style: italic; font-size: 0.98rem; }
+    .award {
+      display: inline-flex; align-items: center; gap: 0.25rem; font-style: normal; font-weight: 700; font-size: 0.8rem;
+      color: var(--gold); background: var(--gold-soft);
+      padding: 0.05rem 0.6rem; border-radius: 999px; margin-left: 0.4rem; vertical-align: 1px;
+    }
+    .award svg { width: 0.8rem; height: 0.8rem; }
+    .pub-links { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.75rem; }
+    .pub-links a {
+      font-size: 0.85rem; font-weight: 600; padding: 0.18rem 0.75rem; border-radius: 8px;
+      border: 1px solid var(--line); color: var(--ink); background: var(--bg-soft);
+      transition: all 0.2s ease;
+    }
+    .pub-links a:hover { border-color: transparent; color: #fff; background: linear-gradient(135deg, var(--accent), var(--violet)); text-decoration: none; }
+
+    /* Timeline */
+    .tl li { display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); gap: 1.25rem; }
+    .tl .date { color: var(--muted); font-size: 0.93rem; font-weight: 700; text-align: right; padding-top: 0.15rem; white-space: nowrap; }
+    .tl .item { position: relative; padding: 0 0 2rem 1.75rem; }
+    .tl .item::before {
+      content: ""; position: absolute; left: 0; top: 0.5rem; bottom: -0.5rem; width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--violet));
+      opacity: 0.35;
+    }
+    .tl li:last-child .item { padding-bottom: 0.25rem; }
+    .tl li:last-child .item::before { bottom: auto; height: 1rem; }
+    .tl .dot {
+      position: absolute; left: -7px; top: 0.35rem; width: 16px; height: 16px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--violet));
+      box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px color-mix(in srgb, var(--accent) 35%, transparent);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .tl li:hover .dot { transform: scale(1.2); box-shadow: 0 0 0 4px var(--bg), 0 0 16px 4px color-mix(in srgb, var(--violet) 55%, transparent); }
+    .tl .card {
+      padding: 0.9rem 1.1rem; margin: -0.9rem 0 0 -0.2rem; border-radius: 14px; border: 1px solid transparent;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+    .tl li:hover .card { background: var(--bg-soft); border-color: var(--line); }
+    .tl h4 { font-size: 1.08rem; font-weight: 700; line-height: 1.4; }
+    .tl .org { color: var(--accent); font-weight: 600; font-size: 0.98rem; }
+    .tl .who { color: var(--muted); font-size: 0.95rem; }
+    .tl .desc { margin-top: 0.45rem; font-size: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.65rem; }
+    .tags li {
+      display: block; font-size: 0.82rem; font-weight: 600; padding: 0.1rem 0.65rem; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent);
+    }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .project {
+      position: relative; display: block; padding: 1.1rem 1.2rem 1.15rem; border-radius: 16px;
+      color: var(--ink); border: 1px solid var(--line); background: var(--card); overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .project::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+      background: linear-gradient(120deg, var(--accent), var(--violet), var(--teal));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0; transition: opacity 0.25s ease;
+    }
+    .project:hover { transform: translateY(-4px); box-shadow: var(--shadow); text-decoration: none; }
+    .project:hover::before { opacity: 1; }
+    .project .name { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; color: var(--ink); }
+    .project .name svg { width: 1.1rem; height: 1.1rem; color: var(--accent); flex: none; }
+    .project .go {
+      position: absolute; top: 1.05rem; right: 1.1rem; width: 1.1rem; height: 1.1rem; color: var(--muted);
+      transition: transform 0.25s ease, color 0.25s ease;
+    }
+    .project:hover .go { transform: translate(3px, -3px); color: var(--violet); }
+    .project p { margin-top: 0.4rem; font-size: 0.97rem; padding-right: 1rem; }
+    .project .tech { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.7rem; }
+    .project .tech span { font-size: 0.8rem; font-weight: 600; color: var(--muted); background: var(--bg-soft); border: 1px solid var(--line); padding: 0.02rem 0.55rem; border-radius: 999px; }
+    .more { margin-top: 1.25rem; font-size: 0.98rem; }
+
+    /* Rows */
+    .rows { border: 1px solid var(--line); border-radius: 16px; background: var(--card); overflow: hidden; }
+    .rows li { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 1.25rem; padding: 0.75rem 1.2rem; border-bottom: 1px solid var(--line); transition: background-color 0.2s ease; }
+    .rows li:last-child { border-bottom: 0; }
+    .rows li:hover { background: var(--bg-soft); }
+    .rows .k { font-weight: 700; }
+    .rows .v span { color: var(--muted); }
+    .note { color: var(--muted); margin-bottom: 0.9rem; }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .panel { border: 1px solid var(--line); border-radius: 16px; background: var(--card); padding: 1.2rem 1.3rem; }
+    .edu li + li { margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
+    .edu strong { display: block; font-weight: 700; }
+    .edu .org { color: var(--accent); font-weight: 600; }
+    .edu .meta { color: var(--muted); font-size: 0.95rem; }
+    .certs li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.3rem 0; }
+    .certs .issuer { color: var(--muted); font-size: 0.88rem; white-space: nowrap; }
+
+    /* Contact */
+    .contact {
+      position: relative; overflow: hidden; isolation: isolate;
+      margin-top: 4.5rem; padding: 2.5rem 2rem; border-radius: 24px; text-align: center; color: #fff;
+      background: linear-gradient(120deg, #1E4FB8, #6040D8 55%, #0E8F86);
+    }
+    .contact::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background-image: radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px); background-size: 20px 20px;
+      -webkit-mask-image: radial-gradient(circle at 50% 0%, #000, transparent 75%);
+      mask-image: radial-gradient(circle at 50% 0%, #000, transparent 75%);
+    }
+    .contact h2 { font-family: var(--serif); font-size: 1.9rem; font-weight: 700; }
+    .contact p { margin: 0.6rem auto 0; max-width: 34rem; opacity: 0.9; }
+    .contact .mail {
+      display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.4rem;
+      padding: 0.7rem 1.4rem; border-radius: 999px; background: #fff; color: #1E3A8A; font-weight: 700;
+      box-shadow: 0 12px 30px -12px rgba(0,0,0,0.5); transition: transform 0.2s ease;
+    }
+    .contact .mail:hover { transform: translateY(-2px) scale(1.02); text-decoration: none; }
+    .contact .mail svg { width: 1.1rem; height: 1.1rem; }
+    .contact .more-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem; margin-top: 1.2rem; }
+    .contact .more-links a { color: #fff; opacity: 0.85; font-weight: 600; }
+    .contact .more-links a:hover { opacity: 1; }
+
+    footer { margin-top: 3rem; padding: 1.75rem 0 2.25rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; text-align: center; }
+
+    /* Back to top */
+    .to-top {
+      position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 25;
+      width: 2.8rem; height: 2.8rem; border-radius: 50%; border: 0; cursor: pointer;
+      display: grid; place-items: center; color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--violet));
+      box-shadow: 0 10px 24px -10px var(--violet);
+      opacity: 0; transform: translateY(12px); pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+    .to-top svg { width: 1.2rem; height: 1.2rem; }
+
+    /* ================= Small screens ================= */
+    @media (max-width: 860px) {
+      .about { grid-template-columns: 1fr; gap: 2rem; padding-top: 2.5rem; }
+      .photo { order: -1; }
+      .photo-frame { width: 11rem; height: 11rem; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .projects { grid-template-columns: 1fr; }
+      .split { grid-template-columns: 1fr; gap: 0; }
+      .rows li { grid-template-columns: 1fr; gap: 0.1rem; }
+      .tl li { grid-template-columns: 1fr; gap: 0; }
+      .tl .date { text-align: left; padding: 0 0 0.35rem 1.75rem; position: relative; }
+      .tl .date::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--violet)); opacity: 0.35; }
+    }
+    @media (max-width: 640px) {
+      .nav-links .opt { display: none; }
+      .pub { grid-template-columns: 1fr; gap: 0.7rem; padding: 1.1rem; }
+      .venue-badge { flex-direction: row; gap: 0.35rem; justify-self: start; min-height: 0; padding: 0.25rem 0.75rem; font-size: 0.85rem; }
+      .venue-badge small { margin-top: 0; font-size: 0.85rem; }
+      .news li { grid-template-columns: 1fr; gap: 0.3rem; padding: 0.6rem 0.4rem; }
+      .contact { padding: 2rem 1.25rem; }
+    }
+    @media (max-width: 440px) {
+      .brand span:last-child { display: none; }
+      .nav-right { gap: 0.8rem; }
+      .nav-links { gap: 0.9rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ================= Navigation ================= -->
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="#top"><span class="brand-dot"></span><span>Ali Nazari</span></a>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="Sections">
+          <a class="opt" href="#news">News</a>
+          <a href="#publications">Publications</a>
+          <a href="#experience">Experience</a>
+          <a class="opt" href="#projects">Projects</a>
+          <a class="cv-btn" href="cv.pdf">CV</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Switch between light and dark mode">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </div>
+    <span class="progress" aria-hidden="true"></span>
+  </header>
+
+  <!-- ================= Hero ================= -->
+  <div class="hero" id="top">
+    <div class="aurora" aria-hidden="true">
+      <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+    </div>
+
+    <div class="container">
+      <section class="about">
+        <div>
+          <span class="status"><span class="pulse"></span>Open to research collaborations</span>
+          <h1>Ali Nazari</h1>
+          <p class="subtitle">M.Sc. Computer Science student at TU Dresden and Machine Learning Researcher</p>
+          <p class="typed-line">
+            <span class="sr-only">Research topics: LLM reasoning, vision-language models, trustworthy machine learning, natural language processing, representation learning.</span>
+            <span aria-hidden="true">Working on <span class="typed" id="typed">LLM reasoning</span><span class="caret"></span></span>
+          </p>
+
+          <div class="bio">
+            <p>I am a first-year M.Sc. student in Computer Science at <strong>Dresden University of Technology (TU Dresden)</strong>. I hold a B.Sc. in Computer Engineering from <strong>Sharif University of Technology</strong>.</p>
+            <p>My research is about building and evaluating <strong>reliable and efficient AI systems</strong>: how large models reason, how they represent images and text, and how to make them more trustworthy. I have also worked in industry as an <strong>AI Engineer</strong>, building agentic LLM systems.</p>
+          </div>
+
+          <div class="social">
+            <a class="primary" href="mailto:ali.nazari.8102@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              Email
+            </a>
+            <a href="cv.pdf">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>
+              CV
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&amp;user=YLhJi08AAAAJ&amp;view_op=list_works&amp;sortby=pubdate">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.9V17h2V9z"/><path d="M5 13.2v3.3C5 18.4 8.1 20 12 20s7-1.6 7-3.5v-3.3l-7 3.8z"/></svg>
+              Google Scholar
+            </a>
+            <a href="https://github.com/nazari02105">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/ali-nazari-482479216/">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div class="photo">
+          <div class="photo-frame" id="photo">
+            <img src="https://avatars.githubusercontent.com/u/79265166?v=4&amp;s=480" alt="Photo of Ali Nazari" width="256" height="256"
+                 onerror="document.getElementById('photo').classList.add('no-img')">
+            <span class="initials" aria-hidden="true">AN</span>
+          </div>
+          <p class="photo-caption">
+            <strong><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Dresden, Germany</strong>
+            TU Dresden, Faculty of Computer Science
+          </p>
+        </div>
+      </section>
+
+      <div class="stats">
+        <div class="stat reveal"><div class="num" data-count="5">5</div><div class="label">Papers at ICML, ACL, CVPR and more</div></div>
+        <div class="stat reveal"><div class="num">Spotlight</div><div class="label">at ICML 2026</div></div>
+        <div class="stat reveal"><div class="num" data-count="3">3</div><div class="label">Countries of research collaboration</div></div>
+        <div class="stat reveal"><div class="num" data-count="6">6</div><div class="label">Courses as a teaching assistant</div></div>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" class="container">
+
+    <!-- ================= News ================= -->
+    <section class="part reveal" id="news">
+      <h2><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg></span>News</h2>
+      <ul class="news">
+        <li><time datetime="2026-10">Oct 2026</time><span>Started my M.Sc. in Computer Science at TU Dresden.</span></li>
+        <li><time datetime="2026-05">May 2026</time><span>Our paper <em>Modeling Hierarchical Thinking in Large Reasoning Models</em> was accepted as a <strong>Spotlight</strong> at <strong>ICML 2026</strong>.</span></li>
+        <li><time datetime="2026-04">Apr 2026</time><span><em>MorphBPE</em> was accepted to <strong>Findings of ACL 2026</strong>.</span></li>
+        <li><time datetime="2025-07">Jul 2025</time><span>Finished my B.Sc. in Computer Engineering at Sharif University of Technology.</span></li>
+        <li><time datetime="2025-03">Mar 2025</time><span><em>CLIP Under the Microscope</em> was accepted to <strong>CVPR 2025</strong>.</span></li>
+      </ul>
+    </section>
+
+    <!-- ================= Publications ================= -->
+    <section class="part" id="publications">
+      <h2 class="reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2zM22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>Publications</h2>
+
+      <div class="pubs">
+        <article class="pub featured reveal">
+          <div class="venue-badge v-icml">ICML<small>2026</small></div>
+          <div>
+            <h3 class="pub-title"><a href="https://proceedings.mlr.press/v306/shahariar26a.html">Modeling Hierarchical Thinking in Large Reasoning Models</a></h3>
+            <p class="authors">G M Shahariar, E. Shayegani, <span class="me">A. Nazari</span>, N. Abu-Ghazaleh</p>
+            <p class="venue">International Conference on Machine Learning (ICML), 2026
+              <span class="award"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>Spotlight</span></p>
+            <div class="pub-links">
+              <a href="https://proceedings.mlr.press/v306/shahariar26a.html">Paper</a>
+              <a href="https://arxiv.org/abs/2510.22437">arXiv</a>
+              <a href="https://github.com/nazari02105/CoT-FSM">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub reveal">
+          <div class="venue-badge v-acl">ACL<small>2026</small></div>
+          <div>
+            <h3 class="pub-title"><a href="https://aclanthology.org/2026.findings-acl.2068/">MorphBPE: Morphology-Aware Tokenization for Efficient LLM Training</a></h3>
+            <p class="authors">E. Asgari, Y. El Kheir, M. A. Sadraei Javaheri, <span class="me">A. Nazari</span></p>
+            <p class="venue">Findings of the Association for Computational Linguistics (ACL), 2026</p>
+            <div class="pub-links">
+              <a href="https://aclanthology.org/2026.findings-acl.2068/">Paper</a>
+              <a href="https://arxiv.org/abs/2502.00894">arXiv</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub reveal">
+          <div class="venue-badge v-isd">ISD<small>2025</small></div>
+          <div>
+            <h3 class="pub-title"><a href="https://doi.org/10.5624/isd.20250023">Deep Learning for Dentomaxillofacial Cone-Beam Computed Tomography Image Quality Enhancement: A Pilot Study</a></h3>
+            <p class="authors"><span class="me">A. Nazari</span>, S. M. Y. Najafi, R. Abbasi, H. Mohammad-Rahimi, P. Motie, M. Iranparvar Alamdari, M. Hosseinzadeh, R. Pauwels, F. Schwendicke</p>
+            <p class="venue">Imaging Science in Dentistry, 2025</p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.5624/isd.20250023">Paper</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub reveal">
+          <div class="venue-badge v-cvpr">CVPR<small>2025</small></div>
+          <div>
+            <h3 class="pub-title"><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Abbasi_CLIP_Under_the_Microscope_A_Fine-Grained_Analysis_of_Multi-Object_Representation_CVPR_2025_paper.html">CLIP Under the Microscope: A Fine-Grained Analysis of Multi-Object Representation</a></h3>
+            <p class="authors">R. Abbasi, <span class="me">A. Nazari</span>, A. Sefid, M. A. Banayeeanzade, M. H. Rohban, M. Soleymani Baghshah</p>
+            <p class="venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2025</p>
+            <div class="pub-links">
+              <a href="https://openaccess.thecvf.com/content/CVPR2025/html/Abbasi_CLIP_Under_the_Microscope_A_Fine-Grained_Analysis_of_Multi-Object_Representation_CVPR_2025_paper.html">Paper</a>
+              <a href="https://arxiv.org/abs/2502.19842">arXiv</a>
+              <a href="https://clip-oscope.github.io/">Website</a>
+              <a href="https://github.com/nazari02105/clip-oscope">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub reveal">
+          <div class="venue-badge v-eccv">ECCV-W<small>2024</small></div>
+          <div>
+            <h3 class="pub-title"><a href="https://arxiv.org/abs/2502.19828">Analyzing CLIP's Performance Limitations in Multi-Object Scenarios: A Controlled High-Resolution Study</a></h3>
+            <p class="authors">R. Abbasi, <span class="me">A. Nazari</span>, A. Sefid, M. A. Banayeeanzade, M. H. Rohban, M. Soleymani Baghshah</p>
+            <p class="venue">ECCV 2024 Workshop on Emergent Visual Abilities and Limits of Foundation Models (EVAL-FoMo)</p>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2502.19828">arXiv</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= Experience ================= -->
+    <section class="part" id="experience">
+      <h2 class="reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20"/></svg></span>Experience</h2>
+
+      <h3 class="sub reveal">Research</h3>
+      <ul class="tl">
+        <li class="reveal">
+          <div class="date">May 2025 – May 2026</div>
+          <div class="item"><span class="dot"></span><div class="card">
+            <h4>Reasoning and safety of large reasoning models</h4>
+            <div class="org">University of California, Riverside, USA</div>
+            <div class="who">Supervisor: Prof. Nael Abu-Ghazaleh</div>
+            <p class="desc">Modeled the chain-of-thought of large reasoning models as a six-state finite state machine, to find which state transitions lead to correct or wrong answers. Helped develop a training-free, Q-value-guided activation-steering method that improves reasoning on math and science benchmarks with fewer interventions.</p>
+          </div></div>
+        </li>
+        <li class="reveal">
+          <div class="date">Feb 2024 – Apr 2025</div>
+          <div class="item"><span class="dot"></span><div class="card">
+            <h4>CLIP in multi-object scenes</h4>
+            <div class="org">Sharif University of Technology, Iran</div>
+            <div class="who">Supervisors: Prof. Mohammad Hossein Rohban and Prof. Mahdieh Soleymani Baghshah</div>
+            <p class="desc">Studied CLIP's biases toward objects mentioned first in a caption and toward larger objects in an image, and their effect on retrieval, classification, image-text matching and text-to-image generation. Helped build the ComCO dataset and led all text-encoder experiments.</p>
+          </div></div>
+        </li>
+        <li class="reveal">
+          <div class="date">Nov 2023 – Feb 2024</div>
+          <div class="item"><span class="dot"></span><div class="card">
+            <h4>Image retrieval for medical imaging</h4>
+            <div class="org">Sharif University of Technology, Iran</div>
+            <div class="who">Supervisor: Prof. Mohammad Hossein Rohban</div>
+            <p class="desc">Improved histology image retrieval with a semi-supervised approach and a new re-ranking method that combines bi-encoder and cross-encoder models. Found a critical validation bug while comparing DINO with a supervised baseline.</p>
+          </div></div>
+        </li>
+        <li class="reveal">
+          <div class="date">Jul 2023 – Nov 2023</div>
+          <div class="item"><span class="dot"></span><div class="card">
+            <h4>Protein language model</h4>
+            <div class="org">Helmholtz Centre for Infection Research, Germany</div>
+            <div class="who">Supervisor: Prof. Alice Carolyn McHardy</div>
+            <p class="desc">Built a protein language model to predict antibiotic resistance across bacterial species. Used custom BPE tokenization and distributed training with FlashAttention and DeepSpeed, and explored morphology-aware tokenization.</p>
+          </div></div>
+        </li>
+        <li class="reveal">
+          <div class="date">Mar 2023 – Jul 2023</div>
+          <div class="item"><span class="dot"></span><div class="card">
+            <h4>Super-resolution for 3D dental imaging</h4>
+            <div class="org">Aarhus University, Denmark</div>
+            <div class="who">Supervisor: Dr. Hossein Mohammad-Rahimi</div>
+            <p class="desc">Developed deep learning super-resolution models for dental cone-beam CT images. Simulated image degradation with downscaling, blurring and noise.</p>
+          </div></div>
+        </li>
+      </ul>
+
+      <h3 class="sub reveal">Industry</h3>
+      <ul class="tl">
+        <li class="reveal">
+          <div class="date">May 2026 – Oct 2026</div>
+          <div class="item"><span class="dot"></span><div class="card">
+            <h4>AI Engineer</h4>
+            <div class="org">Avitec, Iran</div>
+            <p class="desc">Built an agentic AI assistant for legal contract tasks, and AI features for a BI dashboard for engineering documents: summaries across all documents and a chat for asking questions about the platform's data.</p>
+            <ul class="tags"><li>LangGraph</li><li>LangChain</li><li>AI agents</li><li>RAG</li><li>LLMs</li></ul>
+          </div></div>
+        </li>
+        <li class="reveal">
+          <div class="date">May 2025 – May 2026</div>
+          <div class="item"><span class="dot"></span><div class="card">
+            <h4>AI Engineer</h4>
+            <div class="org">Hesabo, Iran</div>
+            <p class="desc">Built an agentic AI platform for financial services, with Django back-end services and voice interaction through Speech-to-Text and Text-to-Speech. Also worked on production features such as payment integration and SSO.</p>
+            <ul class="tags"><li>LangGraph</li><li>LangChain</li><li>AI agents</li><li>Django</li><li>Speech</li></ul>
+          </div></div>
+        </li>
+        <li class="reveal">
+          <div class="date">Jul 2022 – Dec 2022</div>
+          <div class="item"><span class="dot"></span><div class="card">
+            <h4>Data Engineering Intern</h4>
+            <div class="org">Code Star, Iran</div>
+            <p class="desc">Software and data engineering with C# and ASP.NET: ETL pipelines, ORM, Elasticsearch and Spark.</p>
+          </div></div>
+        </li>
+        <li class="reveal">
+          <div class="date">Oct 2021 – Apr 2022</div>
+          <div class="item"><span class="dot"></span><div class="card">
+            <h4>Web Development Bootcamp</h4>
+            <div class="org">Maktab Sharif, Iran</div>
+            <p class="desc">Six-month bootcamp on web programming with PHP, Laravel and MySQL.</p>
+          </div></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ================= Projects ================= -->
+    <section class="part" id="projects">
+      <h2 class="reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>Projects</h2>
+
+      <h3 class="sub reveal">Research and machine learning</h3>
+      <div class="projects">
+        <a class="project reveal" href="https://github.com/nazari02105/CoT-FSM">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>CoT-FSM</span>
+          <p>Code for the ICML 2026 paper: reasoning-trace generation, state annotation, transition analysis and steering.</p>
+          <div class="tech"><span>Python</span><span>PyTorch</span><span>Hugging Face</span></div>
+        </a>
+        <a class="project reveal" href="https://github.com/nazari02105/clip-oscope">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>clip-oscope</span>
+          <p>Code for the CVPR 2025 paper: data preparation and image and text encoder experiments on CLIP.</p>
+          <div class="tech"><span>Python</span><span>PyTorch</span><span>CLIP</span></div>
+        </a>
+        <a class="project reveal" href="https://github.com/nazari02105/Image_Retrieval">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Image_Retrieval</span>
+          <p>Retrieval of breast cancer histology images with metric learning, DINO, MAE, SimCLR, VICReg and a cross-encoder re-ranker.</p>
+          <div class="tech"><span>PyTorch</span><span>Self-supervised learning</span></div>
+        </a>
+        <a class="project reveal" href="https://github.com/nazari02105/Clip_Model_FineTune">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Clip_Model_FineTune</span>
+          <p>Fine-tuning CLIP's image encoder on CIFAR-10 (95.2% accuracy) and on colorectal cancer histology patches.</p>
+          <div class="tech"><span>PyTorch</span><span>OpenCV</span></div>
+        </a>
+        <a class="project reveal" href="https://github.com/nazari02105/GSE48558_Data_Analysis">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>GSE48558_Data_Analysis</span>
+          <p>Gene expression analysis of acute myeloid leukemia vs. healthy blood cells.</p>
+          <div class="tech"><span>R</span><span>limma</span></div>
+        </a>
+        <a class="project reveal" href="https://github.com/nazari02105/Bioinformatics_Algorithms">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Bioinformatics_Algorithms</span>
+          <p>23 Rosalind problems: alignment, phylogeny, genome assembly and BWT.</p>
+          <div class="tech"><span>Python</span></div>
+        </a>
+      </div>
+
+      <h3 class="sub reveal">Software engineering</h3>
+      <div class="projects">
+        <a class="project reveal" href="https://github.com/nazari02105/Talend_Back">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Talend (back end and front end)</span>
+          <p>A Talend-like ETL web app: upload datasets and build filter, join and aggregate pipelines on a visual board.</p>
+          <div class="tech"><span>C#</span><span>ASP.NET Core</span><span>EF Core</span><span>Angular</span></div>
+        </a>
+        <a class="project reveal" href="https://github.com/nazari02105/Search_Engine">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Search_Engine</span>
+          <p>Full-text search engine with an inverted index, stemming and AND/OR/NOT queries.</p>
+          <div class="tech"><span>C#</span><span>ASP.NET Core</span><span>EF Core</span></div>
+        </a>
+        <a class="project reveal" href="https://github.com/nazari02105/Yu-Gi-Oh">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Yu-Gi-Oh</span>
+          <p>Team-built card game in three phases: console, JavaFX graphics and online two-player matches.</p>
+          <div class="tech"><span>Java</span><span>JavaFX</span><span>Sockets</span><span>MongoDB</span></div>
+        </a>
+        <a class="project reveal" href="https://github.com/nazari02105/CourseWare">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>CourseWare</span>
+          <p>Course and online exam system with admin, professor and student roles.</p>
+          <div class="tech"><span>PHP</span><span>Laravel</span><span>MySQL</span></div>
+        </a>
+        <a class="project reveal" href="https://github.com/nazari02105/Twitter_Server">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Twitter (server and client)</span>
+          <p>A Twitter-like social network over TCP sockets, with JSON storage.</p>
+          <div class="tech"><span>C</span><span>Sockets</span><span>cJSON</span></div>
+        </a>
+        <a class="project reveal" href="https://github.com/nazari02105/Multi_Threaded_Server">
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Multi_Threaded_Server</span>
+          <p>TCP calculator server with a thread pool and semaphores.</p>
+          <div class="tech"><span>C</span><span>pthreads</span></div>
+        </a>
+      </div>
+      <p class="more reveal">More projects are on my <a href="https://github.com/nazari02105?tab=repositories">GitHub</a>.</p>
+    </section>
+
+    <!-- ================= Teaching ================= -->
+    <section class="part reveal" id="teaching">
+      <h2><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>Teaching</h2>
+      <p class="note">Teaching assistant at Sharif University of Technology. I helped design and grade projects and assignments, and ran workshops.</p>
+      <ul class="rows">
+        <li><span class="k">Natural Language Processing</span><span class="v">Spring 2025 <span>with Dr. Ehsaneddin Asgari</span></span></li>
+        <li><span class="k">Machine Learning</span><span class="v">Fall 2023, Spring 2024 <span>with Dr. Seyed Abolfazl Motahari and Dr. Mahdi Jafari Siavoshani</span></span></li>
+        <li><span class="k">Artificial Intelligence</span><span class="v">Spring 2023, Spring 2024 <span>with Dr. Mohammad Hossein Rohban</span></span></li>
+        <li><span class="k">Modern Information Retrieval</span><span class="v">Fall 2023, Spring 2024 <span>with Dr. Hamid Beigy and Dr. Mahdieh Soleymani</span></span></li>
+        <li><span class="k">Linear Algebra</span><span class="v">Fall 2022 <span>with Dr. Samira Hossein Ghorban</span></span></li>
+        <li><span class="k">Probability and Statistics</span><span class="v">Fall 2022 <span>with Dr. Seyed Abolfazl Motahari and Dr. Ali Sharifi-Zarchi</span></span></li>
+      </ul>
+    </section>
+
+    <!-- ================= Skills ================= -->
+    <section class="part reveal" id="skills">
+      <h2><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></span>Skills</h2>
+      <ul class="rows">
+        <li><span class="k">Programming and data</span><span class="v">Python, C++, Java, C#, SQL, NumPy, pandas</span></li>
+        <li><span class="k">Deep learning</span><span class="v">PyTorch, TensorFlow, Hugging Face Transformers, PEFT (LoRA/QLoRA), bitsandbytes, Unsloth</span></li>
+        <li><span class="k">Training and inference</span><span class="v">DeepSpeed, Accelerate, FlashAttention, Ray, vLLM, SGLang, Ollama, TensorRT-LLM</span></li>
+        <li><span class="k">RAG and agents</span><span class="v">LangChain, LangGraph, LlamaIndex, Haystack, Sentence Transformers, Chroma, Qdrant, Pinecone, Elasticsearch</span></li>
+        <li><span class="k">Evaluation and tracking</span><span class="v">lm-evaluation-harness, Hugging Face Evaluate, DeepEval, Weights &amp; Biases, MLflow, TensorBoard</span></li>
+        <li><span class="k">Tools</span><span class="v">Linux, Git, Docker, LaTeX</span></li>
+        <li><span class="k">Languages</span><span class="v">Persian (native), English (C1, TOEFL iBT 108/120), German (A1)</span></li>
+      </ul>
+    </section>
+
+    <!-- ================= Education + Certificates ================= -->
+    <div class="split">
+      <section class="part reveal" id="education">
+        <h2><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span>Education</h2>
+        <ul class="edu panel">
+          <li>
+            <strong>M.Sc. Computer Science</strong>
+            <span class="org">Dresden University of Technology, Germany</span>
+            <div class="meta">Oct 2026 – present</div>
+          </li>
+          <li>
+            <strong>B.Sc. Computer Engineering</strong>
+            <span class="org">Sharif University of Technology, Iran</span>
+            <div class="meta">Sep 2020 – Jul 2025. GPA 19.16/20 (major 19.42/20)</div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="part reveal" id="certificates">
+        <h2><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"/></svg></span>Certificates</h2>
+        <ul class="certs panel">
+          <li><a href="https://www.udemy.com/certificate/UC-5d3948a0-379e-4bba-8bdc-01d8e227efef/">AI Voice Assistant</a><span class="issuer">Udemy</span></li>
+          <li><a href="https://www.udemy.com/certificate/UC-59fa75ce-06aa-42cb-a666-206b3b1f270b/">Natural Language Processing</a><span class="issuer">Udemy</span></li>
+          <li><a href="https://www.udemy.com/certificate/UC-a0d0644a-6708-45f7-b7f6-93101e3e0283/">NLP with Transformers</a><span class="issuer">Udemy</span></li>
+          <li><a href="https://www.udemy.com/certificate/UC-d6d85109-afb6-4fa6-b3b4-16a8ebf35766/">Face Recognition</a><span class="issuer">Udemy</span></li>
+          <li><a href="https://www.udemy.com/certificate/UC-098dcbf8-ead0-40cd-b511-96d5177c5ee1/">OpenCV in Java</a><span class="issuer">Udemy</span></li>
+          <li><a href="https://www.udemy.com/certificate/UC-5707ce69-aaf7-4e1f-8f05-23d988462cd0/">Intro to Machine Learning</a><span class="issuer">Udemy</span></li>
+          <li><a href="https://maktabkhooneh.org/certificates/MK-YNKPRJ/">Intro to Python Programming</a><span class="issuer">Maktabkhooneh</span></li>
+          <li><a href="https://maktabkhooneh.org/certificates/MK-1S63UK/">Advanced Python Programming</a><span class="issuer">Maktabkhooneh</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- ================= Contact ================= -->
+    <section class="contact reveal" id="contact">
+      <h2>Let's work together</h2>
+      <p>I'm happy to talk about research, collaborations or interesting ML problems.</p>
+      <a class="mail" href="mailto:ali.nazari.8102@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        ali.nazari.8102@gmail.com
+      </a>
+      <div class="more-links">
+        <a href="https://scholar.google.com/citations?hl=en&amp;user=YLhJi08AAAAJ&amp;view_op=list_works&amp;sortby=pubdate">Google Scholar</a>
+        <a href="https://github.com/nazari02105">GitHub</a>
+        <a href="https://www.linkedin.com/in/ali-nazari-482479216/">LinkedIn</a>
+        <a href="cv.pdf">CV</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Ali Nazari. Last updated October 2026.</div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* Light / dark switch */
+      var toggle = document.querySelector('.theme-toggle');
+      toggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        var next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+
+      /* Typing effect for research topics */
+      var typed = document.getElementById('typed');
+      var words = ['LLM reasoning', 'vision-language models', 'trustworthy ML', 'natural language processing', 'representation learning'];
+      if (typed && !still) {
+        var w = 0, i = words[0].length, deleting = true;
+        (function tick() {
+          var word = words[w];
+          if (deleting) {
+            i--;
+            typed.textContent = word.slice(0, i);
+            if (i === 0) { deleting = false; w = (w + 1) % words.length; }
+            setTimeout(tick, 45);
+          } else {
+            i++;
+            typed.textContent = words[w].slice(0, i);
+            if (i === words[w].length) { deleting = true; setTimeout(tick, 1900); }
+            else setTimeout(tick, 85);
+          }
+        })();
+      }
+
+      /* Reveal sections as they scroll into view, and count up the numbers */
+      function countUp(el) {
+        var target = +el.getAttribute('data-count'), start = null;
+        function frame(ts) {
+          if (start === null) start = ts;
+          var p = Math.min((ts - start) / 1100, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      }
+      var items = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !still) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('in');
+            var n = e.target.querySelector('[data-count]');
+            if (n) countUp(n);
+            io.unobserve(e.target);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        items.forEach(function (el) { io.observe(el); });
+      } else {
+        items.forEach(function (el) { el.classList.add('in'); });
+      }
+
+      /* Highlight the menu link of the section on screen */
+      var links = document.querySelectorAll('.nav-links a[href^="#"]');
+      if ('IntersectionObserver' in window) {
+        var map = {};
+        links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+        var nav = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting && map[e.target.id]) {
+              links.forEach(function (a) { a.classList.remove('active'); });
+              map[e.target.id].classList.add('active');
+            }
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        Object.keys(map).forEach(function (id) { var s = document.getElementById(id); if (s) nav.observe(s); });
+      }
+
+      /* Reading progress bar and back-to-top button */
+      var bar = document.querySelector('.progress');
+      var up = document.querySelector('.to-top');
+      function onScroll() {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        var y = window.scrollY;
+        bar.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
+        up.classList.toggle('show', y > 700);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      up.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' }); });
+    })();
+  </script>
+</body>
+</html>
